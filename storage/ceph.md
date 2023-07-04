@@ -1,12 +1,21 @@
+```
+Download and Install Ceph
+```
 curl --silent --remote-name --location https://github.com/ceph/ceph/raw/pacific/src/cephadm/cephadm
 chmod +x cephadm
 ./cephadm add-repo --release pacific
 ./cephadm install
 
+```
+Bootstrap First Monitor Node
+```
 cephadm bootstrap --mon-ip 172.16.104.120 --allow-fqdn-hostname
 cephadm install ceph-common
 ceph orch apply mon --unmanaged
 
+```
+Add Other Node
+```
 ssh-copy-id -f -i /etc/ceph/ceph.pub root@mon2
 ssh-copy-id -f -i /etc/ceph/ceph.pub root@mon3
 
@@ -37,7 +46,9 @@ mon3   172.16.104.122  _admin
 ceph orch daemon add mon mon2:172.16.104.121
 ceph orch daemon add mon mon3:172.16.104.122
 
-
+```
+Create New Pool
+```
 rbd pool init cinder-volumes
 ceph osd pool application enable cinder-volumes rbd
 
