@@ -28,6 +28,10 @@ and delete pvc
 kubectl get pvc
 kubectl delete pvc data-my-release-mariadb-0
 ```
+## Helm Command
+```
+helm ls
+```
 
 
 # Git Repo
