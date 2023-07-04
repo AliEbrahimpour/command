@@ -6,16 +6,14 @@ chmod +x cephadm
 ./cephadm install
 ```
 
-
-```
-Bootstrap First Monitor Node
+# Bootstrap First Monitor Node
 ```
 cephadm bootstrap --mon-ip 172.16.104.120 --allow-fqdn-hostname
 cephadm install ceph-common
 ceph orch apply mon --unmanaged
-
 ```
-Add Other Node
+
+# Add Other Node
 ```
 ssh-copy-id -f -i /etc/ceph/ceph.pub root@mon2
 ssh-copy-id -f -i /etc/ceph/ceph.pub root@mon3
@@ -34,7 +32,10 @@ ceph orch host add ceph3 172.16.104.125
 ceph orch daemon add osd ceph1:/dev/sdb
 ceph orch daemon add osd ceph2:/dev/sdb
 ceph orch daemon add osd ceph3:/dev/sdb
+```
 
+## Check Status
+```
 root@mon1:/etc/ceph# ceph orch host ls
 HOST   ADDR            LABELS  STATUS  
 ceph1  172.16.104.123                  
@@ -46,9 +47,10 @@ mon3   172.16.104.122  _admin
 
 ceph orch daemon add mon mon2:172.16.104.121
 ceph orch daemon add mon mon3:172.16.104.122
-
 ```
-Create New Pool
+
+# Create New Pool Cinder Volume
+
 ```
 rbd pool init cinder-volumes
 ceph osd pool application enable cinder-volumes rbd
@@ -56,6 +58,8 @@ ceph osd pool application enable cinder-volumes rbd
 
 
 ceph auth get-or-create client.cinder mon 'profile rbd' osd 'profile rbd pool=volumes, profile rbd pool=vms, profile rbd-read-only pool=images' mgr 'profile rbd pool=volumes, profile rbd pool=vms'
+```
+
 
 
 
