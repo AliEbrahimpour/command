@@ -1,10 +1,11 @@
-```
-Download and Install Ceph
+# Download and Install Ceph
 ```
 curl --silent --remote-name --location https://github.com/ceph/ceph/raw/pacific/src/cephadm/cephadm
 chmod +x cephadm
 ./cephadm add-repo --release pacific
 ./cephadm install
+```
+
 
 ```
 Bootstrap First Monitor Node
