@@ -39,9 +39,13 @@ chmod +x airflow.sh
 
 ```
 ./airflow.sh python
-
 ```
 
+
+## Cleaning up
+```
+docker compose down --volumes --rmi all
+```
 
 
 
