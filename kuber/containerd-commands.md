@@ -52,6 +52,7 @@ ctr run -n dev -d --rm docker.io/library/nginx:latest nginx /usr/sbin/nginx
 
 ```bash
 ctr containers ls                                   # لیست کانتینرها
+ctr -n k8s.io containers ls
 ctr tasks ls                                        # لیست تسک‌ها
 ctr tasks kill <task-id>                            # ارسال سیگنال به یک task
 ctr tasks delete <task-id>                          # حذف یک task
