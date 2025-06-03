@@ -81,3 +81,24 @@ ctr t exec --exec-id <id> -t <container-id> <cmd>   # اجرای دستور در
 
 > 🧠 نکته: containerd بیشتر برای استفاده برنامه‌محور و توسط Kubernetes یا CRI-O طراحی شده. استفاده دستی از آن با `ctr` برای تست یا دیباگ مفید است، ولی برای تولید بیشتر توسط orchestration tools مثل Kubernetes کنترل می‌شود.
 
+
+## تنظیم فایل پیکربندی crictl
+
+```bash
+sudo tee /etc/crictl.yaml > /dev/null <<EOF
+runtime-endpoint: unix:///run/containerd/containerd.sock
+image-endpoint: unix:///run/containerd/containerd.sock
+timeout: 10
+debug: false
+EOF
+```
+
+## پاک‌سازی تصاویر بی‌استفاده در containerd
+
+```bash
+sudo crictl rmi --prune
+````
+
+
+
+
