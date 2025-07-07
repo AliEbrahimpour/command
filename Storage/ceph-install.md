@@ -66,3 +66,21 @@ ceph auth get-or-create client.cinder mon 'profile rbd' osd 'profile rbd pool=vo
 
 
 
+## 🧠 Set MGR Daemon Placement
+
+Ceph Manager (`mgr`) daemons provide additional monitoring and module-based capabilities to the cluster. To ensure high availability, it's recommended to deploy multiple `mgr` instances.
+
+### 🔧 Apply MGR Daemons on 3 Hosts
+
+```bash
+ceph orch apply mgr --placement="3"
+```
+
+* This command instructs the orchestrator to deploy 3 `mgr` daemons across the cluster.
+* Placement can also be defined using specific hostnames or labels, for example:
+
+  ```bash
+  ceph orch apply mgr --placement="host1,host2,host3"
+  ```
+
+---
