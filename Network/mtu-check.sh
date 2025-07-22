@@ -26,3 +26,7 @@ done
 
 MTU=$((MAX + 28))
 echo "✅ Maximum MTU without fragmentation to $DEST is: $MTU bytes (payload: $MAX)"
+
+
+
+# exec ./mtu-check.sh 8.8.8.8
