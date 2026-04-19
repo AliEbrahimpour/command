@@ -1,0 +1,41 @@
+mkdir -p k8s/rbac
+cd k8s/rbac
+
+cat <<EOF > role-no-exec.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: pod-reader-no-exec
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+EOF
+
+
+
+cat <<EOF > rolebinding-no-exec.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: bind-user-no-exec
+  namespace: default
+subjects:
+- kind: User
+  name: myuser
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-reader-no-exec
+  apiGroup: rbac.authorization.k8s.io
+EOF
+
+
+
+
+kubectl apply -f role-no-exec.yaml
+kubectl apply -f rolebinding-no-exec.yaml
+
+
+
